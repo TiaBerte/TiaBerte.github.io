@@ -169,6 +169,11 @@ The best configuration we found is presented in the table. This optimized versio
 From the plot, we can notice that the SAC curve start after $$10000$$ steps, this is due to the fact that the replay buffer requires a certain number of pre-collected samples before starting the training. We tried to reduce this number but decreasing it showed a drop in performances.  
 Even if on-policy algorithm seems to converge first, they improve little by little during the whole training so they achieve their best evaluation reward after SAC whose evaluation reward is less stable but whose best results are faster.
   
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
     
 |----------------------+-----------|     
 | **Hyper-parameters** | **Value** |   
@@ -180,7 +185,7 @@ Even if on-policy algorithm seems to converge first, they improve little by litt
 | Buffer $$\alpha$$ | 0.6 |  
 | Starting $$\beta$$ | 0.4 |    
 | Annealing rate $$\beta$$ | $$3*10^{-3}$$ |      
-
+{: .tablelines}
 
 
 <div class="row">
