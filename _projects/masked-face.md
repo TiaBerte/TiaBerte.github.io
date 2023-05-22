@@ -7,7 +7,7 @@ importance: 1
 category: work
 ---
 
-# Project Description
+# Project description
 When Covid-19 appeared, the most immediate defensive tool for contrasting the spread was the use of face-mask. However this introduction made more evident one of the weaknesses of our facial recognition systems, they indeed were unable to correctly classify/recognize the identity of a person wearing a face mask. We tried to overcome this problem proposing a solution applicable to the standard systems made by a convolutional neural network as feature extractor plus a final classifier such as SVM or $$k$$-NN. Our method exploits the Barlow Twins technique for learning the invariance to the presence of the face mask. We used MLFW dataset, a new synthetic dataset created starting from CALF, so our network not only learned the invariance to the face mask but also to the age. Our results aren't comparable to state-of-the-art systems however seem promising for successive studies.  
 The code can be found on [GitHub](https://github.com/TiaBerte/masked-face).
 
@@ -75,9 +75,6 @@ Barlow Twins requires big batch sizes to perform well, however large batch sizes
         {% include figure.html path="assets/img/Roseanne_Barr_0004_0000.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
 <div class="row">
     <div class="col-sm mt-2 mt-md-0">
         {% include figure.html path="assets/img/Tatiana_Panova_0004_0000.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
@@ -101,6 +98,7 @@ We generated the embedding for the $k$-NN using the backbone. We selected $$k = 
 Since SGD presented the best results, we tried to exploit at most all the images at our disposal. Instead of sampling only 2 images for each celebrities, we sampled all $$n/2$$ couples for each identity where $$n$$ is the number of image for that id. Doing so the number of couples for each epochs almost doubled.  
 In Table are presented the results of our experiments.
 
+|---------------+------------|
 | **Technique** | **Accuracy** |   
 | --- | --- |  
 | SGD | 79.72 |  
@@ -135,6 +133,25 @@ Even if the algorithm performed very well, it was difficult to cluster the image
 We decided to analyze the performances of our system in each different group. We identified $5$ main groups: White/Caucasian, African American, Asiatic, Arab, and Hispanic.  
 We labeled each person manually, however, this has not to be intended as a classification aim to create a new dataset but just to provide an idea of the dataset distribution. We are conscious of the possibility of making mistakes in this labeling process, our purpose was just for performance analysis and it wasn't intended to offend any of the people on the list.  
 
+|---------------+---------------+-------------|
+| **Ethnicity** | **Train set percentage** | **Test set percentage**|  
+| --- | --- | --- |  
+| African American | 8.04 | 5.22 |
+| Arab | 4.06 | 6.71 |  
+| Asiatic | 5.49 | 2.24 |  
+| Hispanic | 5.11 | 6.72 |  
+| Caucasian | 77.30 | 79.11 |  
+
+Once the dataset was labeled, we checked the performances of the single ethnicity to prevent biases. The performances are reported in the following table.
+
+|---------------+--------+-------+-------------|
+| **Ethnicity** | **SGD**| **PowerSGD** | **SGD + new sampler** |  
+| --- | --- | --- | --- |
+| African American | 94.44 | 94.44 | 88.89 |
+| Arab | 75.00 | 85.72 | 78.57 |  
+| Asiatic | 83.33 | 83.33 | 83.33 |  
+| Hispanic | 80.00 | 70.00 | 70.00 |  
+| Caucasian | 79.02 | 72.72 | 75.87 |
 
 
 Unexpectedly even if the Caucasian ethnicity is the most present, it isn't the one that presents the best accuracy. It means that this approach isn't particularly biased toward some specific ethnicity or it's unable to work with a specific minority.
@@ -145,6 +162,16 @@ One of the biggest weaknesses of our solution is related to the dataset, it's no
 Even if PowerSGD seemed a promising technique for speeding up the training, we noticed little to no speedup in using it. We believe this is because the GPUs were located on the same node, thus they had a very high bandwidth.  
 In the end, a positive aspect we think is worth noticing is the behavior related to the different ethnicity. Of course, we can notice different performances for each subgroup, however, the majority of them show better performances than the Caucasian ethnicity. We cannot conclude for sure that this approach is free from biases however it seems a promising point for successive studies.
 
-
+<div class="row">
+    <div class="col-sm mt-2 mt-md-0">
+        {% include figure.html path="assets/img/Michael_Jordan_0001_0000.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-2 mt-md-0">
+        {% include figure.html path="assets/img/Michael_Jordan_0001_0003.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Example of low-quality images.
+</div>
     
 

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: RL for Decision Focused Learning
-description: Analysis of RL algorithm in the context of Decision Making
+description: Analysis of Soft Actor-Critic algorithm in the context of Decision Making
 img: assets/img/sac_comparison.png
 importance: 1
 category: work
@@ -170,7 +170,7 @@ From the plot, we can notice that the SAC curve start after $$10000$$ steps, thi
 Even if on-policy algorithm seems to converge first, they improve little by little during the whole training so they achieve their best evaluation reward after SAC whose evaluation reward is less stable but whose best results are faster.
   
     
-      
+|----------------------+-----------|     
 | **Hyper-parameters** | **Value** |   
 | --- | --- |  
 | Hidden dimension | 512 |  
