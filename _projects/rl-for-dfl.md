@@ -141,8 +141,8 @@ We started our analysis with a quick comparison between SAC and two on-policy al
 From this first trial we noticed that on-policy algorithms converge faster but they are not capable of achieving the same reward value, so we decided to focus our attention on SAC.  
 In our successive experiments, we tried to improve the reward and quicken the convergence.  
 First of all we launched a grid search for identifying the best combination of hidden dimension and batch size, the batch size was chosen in the range $$[128, 256, 512, 1024]$$, while the hidden dimension was in the range $$[128, 256, 512]$$.  
-From the first plot, we can notice that increasing the number of neurons for the layer helps the convergence, instead there isn't a clear relationship between convergence and batch size since in some cases smaller batches converge faster. However, the best combination is the one with $$512$$ as hidden dimension and $$1024$$ as batch size. The reward evaluation plot is more difficult to read since the convergence at evaluation time is less stable than the one at training time.
-
+From the first plot, we can notice that increasing the number of neurons for the layer helps the convergence, instead there isn't a clear relationship between convergence and batch size since in some cases smaller batches converge faster. However, the best combination is the one with $$512$$ as hidden dimension and $$1024$$ as batch size. The reward evaluation plot is more difficult to read since the convergence at evaluation time is less stable than the one at training time.  
+<br/><br/>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html path="assets/img/train_sac_comparison.png" title="example image" class="img-fluid rounded z-depth-1" %}
@@ -161,7 +161,7 @@ From the first plot, we can notice that increasing the number of neurons for the
     Comparison of evaluation reward during the grid search.
 </div>
 
-
+<br/><br/>
 
 Once the range of possibilities was reduced, we experimented using the prioritized experience replay. We proposed two little variations to the standard technique, instead of using a liner annealing for the $$\beta$$ value, we used an exponential one, and instead of assigning the maximum priority to the new samples, we noticed that assigning as priority the mean value of the priorities of the last sampled batch was more robust and improved the performances.  
 After having fixed the batch size, the hidden dimension, and the type of buffer we launched a random search to find the best learning rate for both policy network and critic networks and the hyper-parameters related to the prioritized experience replay.  
@@ -169,11 +169,7 @@ The best configuration we found is presented in the table. This optimized versio
 From the plot, we can notice that the SAC curve start after $$10000$$ steps, this is due to the fact that the replay buffer requires a certain number of pre-collected samples before starting the training. We tried to reduce this number but decreasing it showed a drop in performances.  
 Even if on-policy algorithm seems to converge first, they improve little by little during the whole training so they achieve their best evaluation reward after SAC whose evaluation reward is less stable but whose best results are faster.
   
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
+<br/><br/>
     
 |----------------------+-----------|     
 | **Hyper-parameters** | **Value** |   
@@ -185,8 +181,8 @@ Even if on-policy algorithm seems to converge first, they improve little by litt
 | Buffer $$\alpha$$ | 0.6 |  
 | Starting $$\beta$$ | 0.4 |    
 | Annealing rate $$\beta$$ | $$3*10^{-3}$$ |      
-{: .tablelines}
-
+  
+  <br/><br/>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -205,7 +201,7 @@ Even if on-policy algorithm seems to converge first, they improve little by litt
 <div class="caption">
     Comparison of evaluation reward between PPO, VPG and the best SAC.
 </div>
-
+<br/><br/>
 # Conclusions <a name="section6"></a>
 
 From our project, we can conclude that the decision focused learning framework it's a promising direction for solving decision making problem.  
