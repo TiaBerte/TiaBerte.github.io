@@ -2,8 +2,8 @@
 layout: page
 title: Masked Face recognition
 description: Masked Face recogntioon problem solved using Barlow Twins technique
-img: 
-importance: 4
+img: assets/img/bt_masked.png
+importance: 1
 category: work
 ---
 
