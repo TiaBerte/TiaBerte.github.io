@@ -327,11 +327,7 @@ From the first plot, we can notice that increasing the number of neurons for the
 
 <p>Once the range of possibilities was reduced, we experimented using the prioritized experience replay. We proposed two little variations to the standard technique, instead of using a liner annealing for the \(\beta\) value, we used an exponential one, and instead of assigning the maximum priority to the new samples, we noticed that assigning as priority the mean value of the priorities of the last sampled batch was more robust and improved the performances.<br>
 After having fixed the batch size, the hidden dimension, and the type of buffer we launched a random search to find the best learning rate for both policy network and critic networks and the hyper-parameters related to the prioritized experience replay.<br>
-The best configuration we found is presented in the table. This optimized version not only improved the convergence speed but also the reward value.
-From the plot, we can notice that the SAC curve start after \(10000\) steps, this is due to the fact that the replay buffer requires a certain number of pre-collected samples before starting the training. We tried to reduce this number but decreasing it showed a drop in performances.<br>
-Even if on-policy algorithm seems to converge first, they improve little by little during the whole training so they achieve their best evaluation reward after SAC whose evaluation reward is less stable but whose best results are faster.</p>
-
-<p><br><br></p>
+The best configuration we found is presented in the table. This optimized version not only improved the convergence speed but also the reward value.</p>
 
 <table>
   <thead>
@@ -372,7 +368,8 @@ Even if on-policy algorithm seems to converge first, they improve little by litt
   </tbody>
 </table>
 
-<p><br><br></p>
+<p>From the plot, we can notice that the SAC curve start after \(10000\) steps, this is due to the fact that the replay buffer requires a certain number of pre-collected samples before starting the training. We tried to reduce this number but decreasing it showed a drop in performances.<br>
+Even if on-policy algorithm seems to converge first, they improve little by little during the whole training so they achieve their best evaluation reward after SAC whose evaluation reward is less stable but whose best results are faster.</p>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -422,6 +419,7 @@ Even if on-policy algorithm seems to converge first, they improve little by litt
     Comparison of evaluation reward between PPO, VPG and the best SAC.
 </div>
 <p><br><br></p>
+
 <h1 id="conclusions-">Conclusions <a name="section6"></a>
 </h1>
 
