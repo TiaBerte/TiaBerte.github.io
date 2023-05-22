@@ -135,44 +135,7 @@ Even if the algorithm performed very well, it was difficult to cluster the image
 We decided to analyze the performances of our system in each different group. We identified $5$ main groups: White/Caucasian, African American, Asiatic, Arab, and Hispanic.  
 We labeled each person manually, however, this has not to be intended as a classification aim to create a new dataset but just to provide an idea of the dataset distribution. We are conscious of the possibility of making mistakes in this labeling process, our purpose was just for performance analysis and it wasn't intended to offend any of the people on the list.  
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{c|c|c}
-\hline
-      \multirow{2}{*}{\textbf{Ethnicity}} & \textbf{Train set} & \textbf{Test set}\\
-     & \textbf{percentage} & \textbf{percentage}\\
-     \hline
-     African American & 8.04 & 5.22\\
-     Arab & 4.06 & 6.71\\
-     Asiatic & 5.49 & 2.24\\
-     Hispanic & 5.11 & 6.72\\
-     Caucasian & 77.30 & 79.11\\
-     \hline
-    \end{tabular}
-    \caption{Ethnicity distribution of a dataset.}
-    \label{tab:train_ethnicity }
-\end{table}
-Once the dataset was labeled, we checked the performances of the single ethnicity to prevent biases. The performances are reported in Table.
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{c|ccc}
-    \hline
-    \multirow{2}{*}{\textbf{Ethnicity}} & \multicolumn{3}{c}{\textbf{Accuracy}}\\
-    \cline{2-4}
-         &  \multirow{2}{*}{SGD} & Power & SGD +\\
-         & & SGD & new sampler \\
-    \hline
-     African American & 94.44 & 94.44 & 88.89\\
-     Arab & 75.00 & 85.72 & 78.57\\
-     Asiatic & 83.33 & 83.33 & 83.33\\
-     Hispanic & 80.00 & 70.00 & 70.00\\
-     Caucasian & 79.02 & 72.72 & 75.87\\
-     \hline
-    \end{tabular}
-    \caption{Accuracy results for each ethnicity.}
-    \label{tab:ethnicity_results}
-\end{table}
 
 Unexpectedly even if the Caucasian ethnicity is the most present, it isn't the one that presents the best accuracy. It means that this approach isn't particularly biased toward some specific ethnicity or it's unable to work with a specific minority.
 
@@ -182,16 +145,6 @@ One of the biggest weaknesses of our solution is related to the dataset, it's no
 Even if PowerSGD seemed a promising technique for speeding up the training, we noticed little to no speedup in using it. We believe this is because the GPUs were located on the same node, thus they had a very high bandwidth.  
 In the end, a positive aspect we think is worth noticing is the behavior related to the different ethnicity. Of course, we can notice different performances for each subgroup, however, the majority of them show better performances than the Caucasian ethnicity. We cannot conclude for sure that this approach is free from biases however it seems a promising point for successive studies.
 
-\begin{figure}[h!]
-        \subfloat[Michael Jordan face mask template 1]{%
-            \includegraphics[width=.48\linewidth]{images/Michael_Jordan_0001_0000.jpg}%
-       }\hfill
-       \subfloat[Michael Jordan face mask template 3]{%
-            \includegraphics[width=.48\linewidth]{images/Michael_Jordan_0001_0003.jpg}%
-        }\\
-        
-        \caption{Example of different samples produced from the same original image but with different face masks.}
-        \label{fig:same_images}
-    \end{figure
+
     
 
