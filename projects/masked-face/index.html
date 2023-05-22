@@ -139,7 +139,7 @@
           </header>
 
           <article>
-            <h1 id="project-description">Project Description</h1>
+            <h1 id="project-description">Project description</h1>
 <p>When Covid-19 appeared, the most immediate defensive tool for contrasting the spread was the use of face-mask. However this introduction made more evident one of the weaknesses of our facial recognition systems, they indeed were unable to correctly classify/recognize the identity of a person wearing a face mask. We tried to overcome this problem proposing a solution applicable to the standard systems made by a convolutional neural network as feature extractor plus a final classifier such as SVM or \(k\)-NN. Our method exploits the Barlow Twins technique for learning the invariance to the presence of the face mask. We used MLFW dataset, a new synthetic dataset created starting from CALF, so our network not only learned the invariance to the face mask but also to the age. Our results aren’t comparable to state-of-the-art systems however seem promising for successive studies.<br>
 The code can be found on <a href="https://github.com/TiaBerte/masked-face" rel="external nofollow noopener" target="_blank">GitHub</a>.</p>
 
@@ -248,9 +248,6 @@ Barlow Twins requires big batch sizes to perform well, however large batch sizes
 </figure>
 
     </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
 </div>
 <div class="row">
     <div class="col-sm mt-2 mt-md-0">
@@ -405,6 +402,88 @@ We tried to derive the ethnicity of the people using an automatic method, such a
 <p>We decided to analyze the performances of our system in each different group. We identified $5$ main groups: White/Caucasian, African American, Asiatic, Arab, and Hispanic.<br>
 We labeled each person manually, however, this has not to be intended as a classification aim to create a new dataset but just to provide an idea of the dataset distribution. We are conscious of the possibility of making mistakes in this labeling process, our purpose was just for performance analysis and it wasn’t intended to offend any of the people on the list.</p>
 
+<table>
+  <thead>
+    <tr>
+      <th><strong>Ethnicity</strong></th>
+      <th><strong>Train set percentage</strong></th>
+      <th><strong>Test set percentage</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>African American</td>
+      <td>8.04</td>
+      <td>5.22</td>
+    </tr>
+    <tr>
+      <td>Arab</td>
+      <td>4.06</td>
+      <td>6.71</td>
+    </tr>
+    <tr>
+      <td>Asiatic</td>
+      <td>5.49</td>
+      <td>2.24</td>
+    </tr>
+    <tr>
+      <td>Hispanic</td>
+      <td>5.11</td>
+      <td>6.72</td>
+    </tr>
+    <tr>
+      <td>Caucasian</td>
+      <td>77.30</td>
+      <td>79.11</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Once the dataset was labeled, we checked the performances of the single ethnicity to prevent biases. The performances are reported in the following table.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Ethnicity</strong></th>
+      <th><strong>SGD</strong></th>
+      <th><strong>PowerSGD</strong></th>
+      <th><strong>SGD + new sampler</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>African American</td>
+      <td>94.44</td>
+      <td>94.44</td>
+      <td>88.89</td>
+    </tr>
+    <tr>
+      <td>Arab</td>
+      <td>75.00</td>
+      <td>85.72</td>
+      <td>78.57</td>
+    </tr>
+    <tr>
+      <td>Asiatic</td>
+      <td>83.33</td>
+      <td>83.33</td>
+      <td>83.33</td>
+    </tr>
+    <tr>
+      <td>Hispanic</td>
+      <td>80.00</td>
+      <td>70.00</td>
+      <td>70.00</td>
+    </tr>
+    <tr>
+      <td>Caucasian</td>
+      <td>79.02</td>
+      <td>72.72</td>
+      <td>75.87</td>
+    </tr>
+  </tbody>
+</table>
+
 <p>Unexpectedly even if the Caucasian ethnicity is the most present, it isn’t the one that presents the best accuracy. It means that this approach isn’t particularly biased toward some specific ethnicity or it’s unable to work with a specific minority.</p>
 
 <h1 id="conclusions-">Conclusions <a name="section6"></a>
@@ -413,6 +492,48 @@ We labeled each person manually, however, this has not to be intended as a class
 One of the biggest weaknesses of our solution is related to the dataset, it’s not built so well for our purpose. It required some manual cleaning and a lot of images was really similar since produced from the same original unmasked face with the addition of the same face mask but with different colors. It slows down the learning process and the generalization capability. This can be also the reason behind the decreasing in performances when we increased the dataset size. Sampling all the possible couple increased a lot the probability of sampling two really similar images which causes bad training.<br>
 Even if PowerSGD seemed a promising technique for speeding up the training, we noticed little to no speedup in using it. We believe this is because the GPUs were located on the same node, thus they had a very high bandwidth.<br>
 In the end, a positive aspect we think is worth noticing is the behavior related to the different ethnicity. Of course, we can notice different performances for each subgroup, however, the majority of them show better performances than the Caucasian ethnicity. We cannot conclude for sure that this approach is free from biases however it seems a promising point for successive studies.</p>
+
+<div class="row">
+    <div class="col-sm mt-2 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/Michael_Jordan_0001_0000-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/Michael_Jordan_0001_0000-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/Michael_Jordan_0001_0000-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/Michael_Jordan_0001_0000.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" title="example image" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+    <div class="col-sm mt-2 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/Michael_Jordan_0001_0003-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/Michael_Jordan_0001_0003-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/Michael_Jordan_0001_0003-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/Michael_Jordan_0001_0003.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" title="example image" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+<div class="caption">
+    Example of low-quality images.
+</div>
 
 
           </article>
