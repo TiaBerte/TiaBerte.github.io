@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Masked Face recognition
-description: Masked Face recogntioon problem solved using Barlow Twins technique
-img: assets/img/bt_masked.png
+description: Masked Face recogntion problem solved using Barlow Twins technique
+img: assets/img/bt_masked.jpg
 importance: 1
 category: work
 ---
@@ -171,7 +171,7 @@ In the end, a positive aspect we think is worth noticing is the behavior related
     </div>
 </div>
 <div class="caption">
-    Example of low-quality images.
+    Example of similar images produced from the same original one.
 </div>
     
 

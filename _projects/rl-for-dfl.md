@@ -135,7 +135,7 @@ We started our analysis with a quick comparison between SAC and two on-policy al
     </div>
 </div>
 <div class="caption">
-    This image can also have a caption. It's like magic.
+     Comparison of evaluation reward between PPO, VPG and the best SAC.
 </div>
    
 From this first trial we noticed that on-policy algorithms converge faster but they are not capable of achieving the same reward value, so we decided to focus our attention on SAC.  
@@ -165,18 +165,15 @@ From the first plot, we can notice that increasing the number of neurons for the
 
 Once the range of possibilities was reduced, we experimented using the prioritized experience replay. We proposed two little variations to the standard technique, instead of using a liner annealing for the $$\beta$$ value, we used an exponential one, and instead of assigning the maximum priority to the new samples, we noticed that assigning as priority the mean value of the priorities of the last sampled batch was more robust and improved the performances.  
 After having fixed the batch size, the hidden dimension, and the type of buffer we launched a random search to find the best learning rate for both policy network and critic networks and the hyper-parameters related to the prioritized experience replay.  
-The best configuration we found is presented in the table. This optimized version not only improved the convergence speed but also the reward value.
+The best hyper-parameters are presented below. This optimized version not only improved the convergence speed but also the reward value.
 
-|----------------------+-----------|     
-| **Hyper-parameters** | **Value** |   
-| --- | --- |  
-| Hidden dimension | 512 |  
-| Batch size | 1024 |  
-| Policy lr | $$3*10^{-3}$$ |  
-| Critic lr | $$3*10^{-2}$$ | 
-| Buffer $$\alpha$$ | 0.6 |  
-| Starting $$\beta$$ | 0.4 |    
-| Annealing rate $$\beta$$ | $$3*10^{-3}$$ |      
+* Hidden dimension = 512;
+* Batch size = 1024;  
+* Policy lr = $$3*10^{-3}$$;   
+* Critic lr = $$3*10^{-2}$$;   
+* Buffer $$\alpha$$ = 0.6;  
+* Starting $$\beta$$ = 0.4;      
+* Annealing rate $$\beta$$ = $$3*10^{-3}$$.      
 
 From the plot, we can notice that the SAC curve start after $$10000$$ steps, this is due to the fact that the replay buffer requires a certain number of pre-collected samples before starting the training. We tried to reduce this number but decreasing it showed a drop in performances.  
 Even if on-policy algorithm seems to converge first, they improve little by little during the whole training so they achieve their best evaluation reward after SAC whose evaluation reward is less stable but whose best results are faster.
